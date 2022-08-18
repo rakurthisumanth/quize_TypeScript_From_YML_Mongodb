@@ -1,0 +1,17 @@
+{
+  "name": "type_script_express_from_yaml_mangodb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "generate": "openapi-generator-plus -c config.yml",
+    "start": "nodemon src/index.ts"
+  },
+  "dependencies": {
+    "@openapi-generator-plus/typescript-express-passport-server-generator": "^2.6.0",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19",
+    "openapi-generator-plus": "^2.2.0",
+    "passport": "^0.6.0"
+  }
+}

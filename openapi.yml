@@ -1,0 +1,139 @@
+openapi: '3.0.2'
+info:
+  title: MICRO SERVICES CURD OPERATIONS
+  version: '1.0'
+servers:
+  - url: http://localhost:8000
+
+
+
+paths:
+  /createUser:
+    post:
+      tags:
+        - user
+      description: UserCreate
+      operationId: UserCreate
+      responses:
+        '201':
+          description: UserCreate Sucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: UserCreateFailure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      requestBody:
+        description: UserCreate
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+  /getUser:
+    get:
+      tags:
+        - user
+      description:  GetUser
+      operationId: GetUser
+      responses:
+        '201':
+          description: GetUser Sucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: GetUser UserCreateFailure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /UpdateUser/{email}:
+    put:
+      tags:
+        - User
+      description:  UpdateUser
+      operationId: UpdateUser
+      parameters:
+        - name: email
+          in: path
+          description: email
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: UpdateUserSucess
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: UpdateUserFailure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      requestBody:
+        description: UpdateUser
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+  /deleteUser/{email}:
+    delete:
+      tags:
+        - user
+      description:  deleteUser
+      operationId: DELETEUser
+      parameters:
+        - name: email
+          in: path
+          description: email
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description:  DeleteUserSucessFully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: DeleteUserFailure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+            
+
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      description:  ResponseInStatusCode
+      properties:
+        code: 
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+
+    User:
+      type: object
+      description:  ResponseInStatusCode
+      properties:
+        name:
+          type: string
+        phonenumber:
+          type: string
+        email:
+          type: string
+          
