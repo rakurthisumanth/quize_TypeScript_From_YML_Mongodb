@@ -40,7 +40,7 @@ This is an example of the API implementation to use to update the actual API imp
 when the API structure has changed.
 
 ```typescript
-async function userCreate(request: Api.User | undefined): Promise<t.UserCreateResponse> {
+async function userCreate(request: Api.BODYDATA | undefined): Promise<t.UserCreateResponse> {
 	throw 'Unimplemented'
 }
 
@@ -52,7 +52,7 @@ async function getUser(): Promise<t.GetUserResponse> {
 	throw 'Unimplemented'
 }
 
-async function updateUser(email: string, request: Api.User | undefined): Promise<t.UpdateUserResponse> {
+async function updateUser(email: string, request: Api.BODYDATA | undefined): Promise<t.UpdateUserResponse> {
 	throw 'Unimplemented'
 }
 

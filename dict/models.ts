@@ -26,13 +26,13 @@ export namespace Api {
 		message?: string;
 	}
 
-	/**
-	 * <p>ResponseInStatusCode</p>
-	 */
-	export interface User {
-		name?: string;
-		phonenumber?: string;
+	export interface BODYDATA {
 		email?: string;
+		/**
+		 * @type {number}
+		 * @memberof BODYDATA
+		 */
+		phonenumber?: number;
 	}
 
 }

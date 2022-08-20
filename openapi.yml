@@ -32,7 +32,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/BODYDATA'
   /getUser:
     get:
       tags:
@@ -45,7 +45,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                type: array
+                items:
+                  $ref: '#/components/schemas/BODYDATA'
         '400':
           description: GetUser UserCreateFailure
           content:
@@ -83,7 +85,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/BODYDATA'
   /deleteUser/{email}:
     delete:
       tags:
@@ -126,14 +128,12 @@ components:
         message:
           type: string
 
-    User:
+   
+    BODYDATA:
       type: object
-      description:  ResponseInStatusCode
       properties:
-        name:
+        email: 
           type: string
         phonenumber:
-          type: string
-        email:
-          type: string
+          type: number
           

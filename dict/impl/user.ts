@@ -1,7 +1,7 @@
 import * as t from '../api/user/types'
 import { Api } from '../models'
 
-async function userCreate(request: Api.User | undefined): Promise<t.UserCreateResponse> {
+async function userCreate(request: Api.BODYDATA | undefined): Promise<t.UserCreateResponse> {
 	throw 'Unimplemented'
 }
 

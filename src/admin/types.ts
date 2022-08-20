@@ -4,17 +4,17 @@ export const collections:{users?: mongoDB.Collection}={}
 
 export async function connectToDatabase() {
     const client:mongoDB.MongoClient=new mongoDB.MongoClient(
-        "mogodb host Url-future wii be updated",
-        {
-         tlsCAFile: `rds-combined-ca-bundle.pem`
-        }
+        "mongodb+srv://sumanth:ETrkoGjkIvxOWa75@cluster0.gcjsxno.mongodb.net/?retryWrites=true&w=majority"
+        // {
+        //  tlsCAFile: `rds-combined-ca-bundle.pem`
+        // }
     )
 
     await client.connect()
 
-    const db:mongoDB.Db=client.db("database_name future will be updated")
+    const db:mongoDB.Db=client.db("db")
     
-    const users:mongoDB.Collection=db.collection("collection name add in futuree")
+    const users:mongoDB.Collection=db.collection("user")
 
     collections.users=users
 }

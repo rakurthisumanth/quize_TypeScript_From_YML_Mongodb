@@ -28,7 +28,7 @@ export default function(app: Express, impl: t.UserApi) {
 					const __mimeType = __contentType ? __contentType.replace(/;.*/, '') : undefined
 
 					if (__mimeType === 'application/json') {
-						return v.modelApiUserFromJson('body', req.body)
+						return v.modelApiBODYDATAFromJson('body', req.body)
 					}
 					console.error(`Invalid request content type: ${__contentType}`)
 					throw new Error(`Invalid request content type: ${__contentType}`)
@@ -142,7 +142,7 @@ export default function(app: Express, impl: t.UserApi) {
 					if (response.status === 201) {
 						let body: any
 						try {
-							body = v.modelApiUserToJson('response', response.body)
+							body = v.arrayToJson(v.modelApiBODYDATAToJson)('response', response.body)
 						} catch (error) {
 							console.error('Invalid response body in user.getUser', error)
 							res.status(500)
@@ -195,7 +195,7 @@ export default function(app: Express, impl: t.UserApi) {
 					const __mimeType = __contentType ? __contentType.replace(/;.*/, '') : undefined
 
 					if (__mimeType === 'application/json') {
-						return v.modelApiUserFromJson('body', req.body)
+						return v.modelApiBODYDATAFromJson('body', req.body)
 					}
 					console.error(`Invalid request content type: ${__contentType}`)
 					throw new Error(`Invalid request content type: ${__contentType}`)

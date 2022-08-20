@@ -8,18 +8,19 @@ export class UserApiImpl implements UserApi {
     getUser(): Promise<GetUserResponse>  {
         return new Promise<GetUserResponse>((resolve,reject)=>{
             collections.users!.find({}).toArray(function (err: any,result:any){
-                if(err) {
+                if(err!=undefined) {
                     const response=<GetUserResponse>{
                         status: 400,
                        body:{message: `something went wrong`},
 
                     }
                     resolve(response)
+                    return
                 }
+                console.log("hihhhhhhhhh",result)
                 const response=<GetUserResponse>{
                     status:201,
                     body: result
-
                 }
                 resolve(response)    
             })  
@@ -51,7 +52,7 @@ export class UserApiImpl implements UserApi {
  }
 
 
- updateUser (email: string, request: Api.User | undefined) : Promise<UpdateUserResponse>
+ updateUser (email: string, request: Api.BODYDATA | undefined) : Promise<UpdateUserResponse>
  {
     return new Promise<UpdateUserResponse>((resolve,reject)=>{
         collections.users!.updateOne(
@@ -77,7 +78,7 @@ export class UserApiImpl implements UserApi {
     })
  }
 
- userCreate(request: Api.User | undefined): Promise<UserCreateResponse>
+ userCreate(request: Api.BODYDATA | undefined): Promise<UserCreateResponse>
  {
     return new Promise<UpdateUserResponse>((resolve,reject)=>{
         collections.users!.findOne(
@@ -91,8 +92,9 @@ export class UserApiImpl implements UserApi {
                     resolve(response)
                 }
                 else{
+                    console.log(request?.phonenumber)
                     collections.users!.insertOne(
-                        request,
+                        {phonenumber:request?.phonenumber,email:request?.email},
                         function(err:any,result:any){
                           if(err){
                             const response=<UpdateUserResponse>{

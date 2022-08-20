@@ -16,10 +16,10 @@ import { Express } from 'express'
 import { Api } from '../../models'
 
 export interface UserApi {
-	userCreate: (request: Api.User | undefined) => Promise<UserCreateResponse>
+	userCreate: (request: Api.BODYDATA | undefined) => Promise<UserCreateResponse>
 	deleteUser: (email: string) => Promise<DeleteUserResponse>
 	getUser: () => Promise<GetUserResponse>
-	updateUser: (email: string, request: Api.User | undefined) => Promise<UpdateUserResponse>
+	updateUser: (email: string, request: Api.BODYDATA | undefined) => Promise<UpdateUserResponse>
 }
 
 export type UserCreateResponse = UserCreate201Response | UserCreate400Response
@@ -54,7 +54,7 @@ export type GetUserResponse = GetUser201Response | GetUser400Response
 
 export interface GetUser201Response {
 	status: 201
-	body: Api.User
+	body: Api.BODYDATA[]
 	headers?: never
 }
 

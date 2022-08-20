@@ -368,66 +368,64 @@ export function modelApiApiResponseToJson(name: string, value: Api.ApiResponse):
 	return result
 }
 
-const ApiUserKeys: string[] = ['name', 'phonenumber', 'email']
+const ApiBODYDATAKeys: string[] = ['email', 'phonenumber']
 
-function modelApiUserFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.User {
+function modelApiBODYDATAFromJsonContent(name: string, value: any, knownKeys: Record<string, boolean> = {}): Api.BODYDATA {
 	if (typeof value !== 'object' || value === undefined || value === null) {
 		throw `Invalid type for ${name}: expected object got ${typeof value}`
 	}
 
-	ApiUserKeys.forEach(k => knownKeys[k] = true)
+	ApiBODYDATAKeys.forEach(k => knownKeys[k] = true)
 
-	const result: Api.User = {
-		'name': allowUndefined(stringFromJson)(`${name}.name`, value['name']),
-		'phonenumber': allowUndefined(stringFromJson)(`${name}.phonenumber`, value['phonenumber']),
+	const result: Api.BODYDATA = {
 		'email': allowUndefined(stringFromJson)(`${name}.email`, value['email']),
+		'phonenumber': allowUndefined(numberFromJson)(`${name}.phonenumber`, value['phonenumber']),
 	}
 
 	return result
 }
 
-function modelApiUserToJsonContent(name: string, value: Api.User, knownKeys: Record<string, boolean> = {}): ToJson<Api.User> {
+function modelApiBODYDATAToJsonContent(name: string, value: Api.BODYDATA, knownKeys: Record<string, boolean> = {}): ToJson<Api.BODYDATA> {
 	if (typeof value !== 'object' || value === undefined || value === null) {
 		throw `Invalid type for ${name}: expected object got ${typeof value}`
 	}
 
-	ApiUserKeys.forEach(k => knownKeys[k] = true)
+	ApiBODYDATAKeys.forEach(k => knownKeys[k] = true)
 	
-	const result: ToJson<Api.User> = {
-		'name': allowUndefined(stringToJson)(`${name}.name`, value['name']),
-		'phonenumber': allowUndefined(stringToJson)(`${name}.phonenumber`, value['phonenumber']),
+	const result: ToJson<Api.BODYDATA> = {
 		'email': allowUndefined(stringToJson)(`${name}.email`, value['email']),
+		'phonenumber': allowUndefined(numberToJson)(`${name}.phonenumber`, value['phonenumber']),
 	}
 
 	return result
 }
 
-export function modelApiUserFromJson(name: string, value: any): Api.User {
+export function modelApiBODYDATAFromJson(name: string, value: any): Api.BODYDATA {
 	const knownKeys: Record<string, boolean> = {}
-	const result: Api.User = modelApiUserFromJsonContent(name, value, knownKeys)
+	const result: Api.BODYDATA = modelApiBODYDATAFromJsonContent(name, value, knownKeys)
 
 	/* Known keys */
 	// TODO if we don't ignore unknown properties
 	for (const key of Object.keys(value)) {
 		if (!knownKeys[key]) {
 			// throw `Unexpected key: ${key}`
-			console.warn(`Unexpected key in Api.User: ${key}`)
+			console.warn(`Unexpected key in Api.BODYDATA: ${key}`)
 		}
 	}
 
 	return result
 }
 
-export function modelApiUserToJson(name: string, value: Api.User): ToJson<Api.User> {
+export function modelApiBODYDATAToJson(name: string, value: Api.BODYDATA): ToJson<Api.BODYDATA> {
 	const knownKeys: Record<string, boolean> = {}
-	const result: ToJson<Api.User> = modelApiUserToJsonContent(name, value, knownKeys)
+	const result: ToJson<Api.BODYDATA> = modelApiBODYDATAToJsonContent(name, value, knownKeys)
 
 	/* Known keys */
 	// TODO if we don't ignore unknown properties
 	for (const key of Object.keys(value)) {
 		if (!knownKeys[key]) {
 			// throw `Unexpected key: ${key}`
-			console.warn(`Unexpected key in Api.User: ${key}`)
+			console.warn(`Unexpected key in Api.BODYDATA: ${key}`)
 		}
 	}
 
