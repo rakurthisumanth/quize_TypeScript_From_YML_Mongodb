@@ -8,16 +8,15 @@ export class UserApiImpl implements UserApi {
     getUser(): Promise<GetUserResponse>  {
         return new Promise<GetUserResponse>((resolve,reject)=>{
             collections.users!.find({}).toArray(function (err: any,result:any){
-                if(err!=undefined) {
+                if(err) {
                     const response=<GetUserResponse>{
                         status: 400,
                        body:{message: `something went wrong`},
 
                     }
                     resolve(response)
-                    return
+                    
                 }
-                console.log("hihhhhhhhhh",result)
                 const response=<GetUserResponse>{
                     status:201,
                     body: result
@@ -92,7 +91,6 @@ export class UserApiImpl implements UserApi {
                     resolve(response)
                 }
                 else{
-                    console.log(request?.phonenumber)
                     collections.users!.insertOne(
                         {phonenumber:request?.phonenumber,email:request?.email},
                         function(err:any,result:any){

@@ -51,7 +51,6 @@ connectToDatabase()
 
     console.log("Data Base Connected Failed")
     process.exit()
-
 })
 
 
