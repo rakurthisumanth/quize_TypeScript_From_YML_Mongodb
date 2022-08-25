@@ -4,10 +4,9 @@ export const collections:{users?: mongoDB.Collection}={}
 
 export async function connectToDatabase() {
     const client:mongoDB.MongoClient=new mongoDB.MongoClient(
-        "mongodb+srv://sumanth:ETrkoGjkIvxOWa75@cluster0.gcjsxno.mongodb.net/?retryWrites=true&w=majority"
-        // {
-        //  tlsCAFile: `rds-combined-ca-bundle.pem`
-        // }
+        "mongodb+srv://sumanth:ETrkoGjkIvxOWa75@cluster0.gcjsxno.mongodb.net/?retryWrites=true&w=majority",
+    
+
     )
 
     await client.connect()
