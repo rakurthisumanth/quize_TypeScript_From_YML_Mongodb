@@ -6,7 +6,6 @@ servers:
   - url: http://localhost:8000
 
 
-
 paths:
   /createUser:
     post:
@@ -126,9 +125,8 @@ components:
         type:
           type: string
         message:
-          type: string
-
-   
+          type: string    
+          
     BODYDATA:
       type: object
       properties:

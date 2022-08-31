@@ -12,10 +12,8 @@ export class UserApiImpl implements UserApi {
                     const response=<GetUserResponse>{
                         status: 400,
                        body:{message: `something went wrong`},
-
                     }
-                    resolve(response)
-                    
+                    resolve(response)                   
                 }
                 const response=<GetUserResponse>{
                     status:201,
@@ -25,6 +23,7 @@ export class UserApiImpl implements UserApi {
             })  
         })   
     }
+
  deleteUser(email:string):Promise<DeleteUserResponse>{
     return new Promise<DeleteUserResponse>((resolve,reject)=>{
         collections.users!.deleteOne(
@@ -49,7 +48,6 @@ export class UserApiImpl implements UserApi {
         
     })
  }
-
 
  updateUser (email: string, request: Api.BODYDATA | undefined) : Promise<UpdateUserResponse>
  {
@@ -76,6 +74,7 @@ export class UserApiImpl implements UserApi {
 
     })
  }
+
 
  userCreate(request: Api.BODYDATA | undefined): Promise<UserCreateResponse>
  {
@@ -117,9 +116,6 @@ export class UserApiImpl implements UserApi {
         )
     })
  }
-
-
-
 }
 
    

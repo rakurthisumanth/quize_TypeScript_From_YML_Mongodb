@@ -5,6 +5,7 @@ export const collections:{users?: mongoDB.Collection}={}
 export async function connectToDatabase() {
     const client:mongoDB.MongoClient=new mongoDB.MongoClient(
         "mongodb+srv://satya:8zDEWcY7NwEXKerR@cluster0.cdu8w6s.mongodb.net/?retryWrites=true&w=majority"
+   
     )
 
     await client.connect()
@@ -15,3 +16,4 @@ export async function connectToDatabase() {
 
     collections.users=users
 }
+

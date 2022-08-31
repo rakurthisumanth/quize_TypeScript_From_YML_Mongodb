@@ -1,10 +1,11 @@
-import express from "express";
+import express from "express"
 import http from 'http'
 import cors from 'cors'
 import YAML from 'yamljs'
 import mongodb from "mongodb"
  
 const MongoClient=require("mongodb").MongoClient
+
 import { connectToDatabase } from "./admin/types";
 
 import swaggerUi from "swagger-ui-express"
@@ -39,7 +40,6 @@ app.use(
     swaggerUi.serveFiles(undefined,options),
     swaggerUi.setup(undefined,options)
 )
-
 connectToDatabase()
 .then(()=>{
     serviceApi(app,impl);
@@ -48,7 +48,6 @@ connectToDatabase()
     })
 
 }).catch((error: Error)=>{
-
     console.log("Data Base Connected Failed")
     process.exit()
 })
