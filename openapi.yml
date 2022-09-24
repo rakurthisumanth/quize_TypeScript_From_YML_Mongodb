@@ -7,112 +7,175 @@ servers:
 
 
 paths:
-  /createUser:
+  /createTask:
     post:
       tags:
-        - user
-      description: UserCreate
-      operationId: UserCreate
+        - Task
+      description: Task Create
+      operationId: TaskCreate
       responses:
         '201':
-          description: UserCreate Sucessfully
+          description: TaskCreate Sucessfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
         '400':
-          description: UserCreateFailure
+          description: TaskCreateFailure
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
       requestBody:
-        description: UserCreate
+        description: TaskCreate
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BODYDATA'
-  /getUser:
+              $ref: '#/components/schemas/TaskData'
+  /getTasks:
     get:
       tags:
-        - user
-      description:  GetUser
-      operationId: GetUser
+        - Task
+      description:  GetTask
+      operationId: GetTask
       responses:
         '201':
-          description: GetUser Sucessfully
+          description: GetTask Sucessfully
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/BODYDATA'
+                  $ref: '#/components/schemas/TaskData'
         '400':
-          description: GetUser UserCreateFailure
+          description: GetTask Failure
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
-  /UpdateUser/{email}:
-    put:
+  /CreateQuestions:
+    post:
       tags:
-        - User
-      description:  UpdateUser
-      operationId: UpdateUser
-      parameters:
-        - name: email
-          in: path
-          description: email
-          required: true
-          schema:
-            type: string
+        - Task
+      description:  CreateQuestions
+      operationId: CreateQuestions
       responses:
         '201':
-          description: UpdateUserSucess
+          description:  CreateQuestions Sucessfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
         '400':
-          description: UpdateUserFailure
+          description: CreateQuestions Failure
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
       requestBody:
-        description: UpdateUser
+        description: CreateQuestions
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/BODYDATA'
-  /deleteUser/{email}:
-    delete:
+              $ref: '#/components/schemas/QuestionData'
+  /GetQuestions/{topicid}:
+    get:
       tags:
-        - user
-      description:  deleteUser
-      operationId: DELETEUser
+        - Task
       parameters:
-        - name: email
+        - name: topicid
           in: path
-          description: email
-          required: true
+          description: getQuestion
           schema:
             type: string
       responses:
         '201':
-          description:  DeleteUserSucessFully
+          description: GetQuestion Sucessfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/QuestionData'
+        '400':
+          description: GetQuestion Failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /PostAnswer:
+    post:
+      tags:
+        - Task
+      description: Answer Create
+      operationId: Answer Create
+      responses:
+        '201':
+          description: AnswerCreate Sucessfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
         '400':
-          description: DeleteUserFailure
+          description: AnswerCreateFailure
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
-            
-
+      requestBody:
+        description: AnswerCreate
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerData'
+  /GetAnswers:
+    get:
+      tags:
+        - Task
+      description: Get Answer
+      operationId: Get Answer
+      responses:
+        "200":
+          description: Get Answers Sucessfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AnswerData"
+        "400":
+          description: Get Answer Failure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse" 
+  /Answer/{QuestionId}:
+    get:
+      tags:
+        - Task
+      description: Get Answer
+      operationId: Get Answer
+      parameters:
+        - name: QuestionId
+          in: query
+          description: QuestionId
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Get Answer Sucesss
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AnswerData"
+        "400":
+          description: Get Answer Failure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiResponse"
 components:
   schemas:
     ApiResponse:
@@ -127,11 +190,36 @@ components:
         message:
           type: string    
           
-    BODYDATA:
+    TaskData:
       type: object
       properties:
-        email: 
+        id:
           type: string
-        phonenumber:
-          type: number
-          
+        topic:
+          type: string
+    QuestionData:
+      type: object
+      properties:
+        id:
+          type: string
+        topicid:
+          type: string
+        question:
+          type: string
+        optionA:
+          type: string
+        optionB:
+          type: string
+        optionC:
+          type: string
+        optionD:
+          type: string
+        QuestionId:
+          type: string
+    AnswerData:
+      type: object
+      properties:
+        QuestionId:
+          type: string
+        answer:
+          type: string

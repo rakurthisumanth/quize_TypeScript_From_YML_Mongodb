@@ -12,8 +12,8 @@
  * Do not edit the class manually.
  */
 
-import * as user from './api/user/types'
+import * as task from './api/task/types'
 
 export interface ApiImplementation {
-	user: user.UserApi
+	task: task.TaskApi
 }

@@ -13,6 +13,11 @@
  */
 
 export namespace Api {
+	export interface AnswerData {
+		QuestionId?: string;
+		answer?: string;
+	}
+
 	/**
 	 * <p>ResponseInStatusCode</p>
 	 */
@@ -26,13 +31,20 @@ export namespace Api {
 		message?: string;
 	}
 
-	export interface BODYDATA {
-		email?: string;
-		/**
-		 * @type {number}
-		 * @memberof BODYDATA
-		 */
-		phonenumber?: number;
+	export interface QuestionData {
+		id?: string;
+		topicid?: string;
+		question?: string;
+		optionA?: string;
+		optionB?: string;
+		optionC?: string;
+		optionD?: string;
+		QuestionId?: string;
+	}
+
+	export interface TaskData {
+		id?: string;
+		topic?: string;
 	}
 
 }

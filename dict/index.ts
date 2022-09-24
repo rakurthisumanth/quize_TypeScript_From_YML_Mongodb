@@ -13,9 +13,9 @@
  */
 
 import { Express } from 'express'
-import user from './api/user'
+import task from './api/task'
 import * as t from './types'
 
 export default function(app: Express, impl: t.ApiImplementation) {
-	user(app, impl.user)
+	task(app, impl.task)
 }

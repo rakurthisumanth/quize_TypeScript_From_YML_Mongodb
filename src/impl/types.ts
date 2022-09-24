@@ -1,9 +1,9 @@
-import { UserApiImpl } from "./user/types";
+import { TaskApiImpl } from "./Task/types";
 import { ApiImplementation } from "../../dict/types";
 
 
 export class serviceApiimpl implements ApiImplementation {
-    user:UserApiImpl=new UserApiImpl
+    task:TaskApiImpl=new TaskApiImpl
 }
 
 
