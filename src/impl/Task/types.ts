@@ -198,7 +198,7 @@ export class TaskApiImpl implements TaskApi{
     }
 
 
-    getAnswer(QuestionId: string):Promise<GetAnswerResponse>{
+    getAnswer(QuestionId: string | undefined):Promise<GetAnswerResponse>{
         return new Promise<GetAnswerResponse>((resolve,reject)=>{
             answers.ans?.find({QuestionId:QuestionId}).toArray(function(err:any,res:any){
                 if(err){

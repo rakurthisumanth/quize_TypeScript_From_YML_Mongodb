@@ -63,7 +63,7 @@ This is an example of the API implementation to use to update the actual API imp
 when the API structure has changed.
 
 ```typescript
-async function getAnswer(questionId: string): Promise<t.GetAnswerResponse> {
+async function getAnswer(questionId: string | undefined): Promise<t.GetAnswerResponse> {
 	throw 'Unimplemented'
 }
 
